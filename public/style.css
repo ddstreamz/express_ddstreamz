@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Pacifico&display=swap');
+
+.arizonia-regular {
+  font-family: 'Arizonia', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  /* background-color: #1a1a2e; */
+  background: url('https://i.ibb.co/d4XwmKmf/bg1.jpg') no-repeat center center
+    fixed;
+
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  height: 100vh;
+  margin: 0;
+}
+.container {
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for PC */
+  gap: 10px;
+}
+/* background-color: #000000; */
+/* border: 2px solid #007bff; Blue border */
+.video-box {
+  opacity: 0; /* Initially hidden */
+  animation: slideInLeft 3s ease-in-out forwards;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 16/9;
+  height: 150px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.438);
+  width: 100%;
+  padding: 100px;
+
+  overflow: hidden;
+}
+
+#willow {
+  background-image: url('https://i.ibb.co/VcH5F8Ym/willow.jpg');
+}
+
+#tnt1 {
+  background-image: url('https://i.ibb.co/qLvpTL4p/tnt1.jpg');
+}
+
+#tnt2 {
+  background-image: url('https://i.ibb.co/PsYRgwFZ/tnt2.jpg');
+}
+
+#tnt3 {
+  background-image: url('https://i.ibb.co/CLwj4nS/tnt3.jpg');
+}
+
+#astro {
+  background-image: url('./images/astro.jpg');
+}
+
+#star_sports1 {
+  background-image: url('./images/star_sports1.jpg');
+}
+
+#star_sports2 {
+  background-image: url('./images/star_sports2.jpg');
+}
+
+#sky_sports {
+  background-image: url('./images/sky_sports.jpg');
+}
+
+#star_gold {
+  background-image: url('./images/star_gold.jpg');
+}
+
+#select {
+  background-image: url('./images/select.jpg');
+}
+
+#zee_cinema {
+  background-image: url('./images/zee_cinema.jpg');
+}
+
+#pictures {
+  background-image: url('./images/pictures.jpg');
+}
+
+#sony_sab {
+  background-image: url('./images/sony_sab.jpg');
+}
+
+#sony_pal {
+  background-image: url('./images/sony_pal.jpg');
+}
+
+#SET {
+  background-image: url('./images/SET.jpg');
+}
+
+#sony_max {
+  background-image: url('./images/sony_max.jpg');
+}
+
+@media (max-width: 599px) {
+  .video-box {
+    max-width: 80vw;
+    margin: auto;
+    height: 100px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Tablets */
+  .container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Large mobile screens */
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Small mobile screens */
+  .container {
+    grid-template-columns: repeat(1, 1fr); /* 1 column */
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#videoPlayer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 20%;
+}

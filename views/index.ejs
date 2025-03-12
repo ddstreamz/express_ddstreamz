@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dd Streamz</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 class="arizonia-regular">DD Streamz</h1>
+      <div id="videoPlayer">
+        <video
+          id="video"
+          controls
+          autoplay
+          style="width: 100%; height: 100%"
+        ></video>
+        <button id="close-btn">&times;</button>
+      </div>
+      <div class="container">
+        <% const channels = [
+          { id: "tnt1", name: "TNT 1", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/28946.m3u8" },
+          { id: "tnt2", name: "TNT 2", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/28945.m3u8" },
+          { id: "tnt3", name: "TNT 3", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85315.m3u8" },
+          { id: "willow", name: "Willow", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/40436.m3u8" },
+          { id: "astro", name: "Astro", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/1721.m3u8" },
+          { id: "star_sports1", name: "Star Sports 1", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85564.m3u8" },
+          { id: "star_sports2", name: "Star Sports 2", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85566.m3u8" },
+          { id: "sky_sports", name: "Sky Sports", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/2879.m3u8" },
+          { id: "star_gold", name: "Star Gold", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/55257.m3u8" },
+          { id: "select", name: "Select", url: "/proxy?url=http://yesimes.oknirvana.club:8880/live/DAANM2879/HfcWYuKnB7/55256.m3u8" },
+          { id: "zee_cinema", name: "Zee Cinema", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85543.m3u8" },
+          { id: "pictures", name: "Pictures", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85559.m3u8" },
+          { id: "sony_sab", name: "Sony Sab", url: "/proxy?url=http://vocotv.pro:80/Jose123/Jose123/694104" },
+          { id: "sony_pal", name: "Sony Pal", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85641.m3u8" },
+          { id: "SET", name: "SET", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85635.m3u8" },
+          { id: "sony_max", name: "Sony Max", url: "/proxy?url=http://supersonictv.live:8080/live/894553/834063/85642.m3u8" }
+        ]; %>
+        <% channels.forEach(channel => { %>
+          <div class="video-box" id="<%= channel.id %>" data-url="<%= channel.url %>"></div>
+        <% }); %>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const videoPlayer = document.getElementById("videoPlayer");
+        const videoElement = document.getElementById("video");
+
+        function playChannel(url) {
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(videoElement);
+          } else if (videoElement.canPlayType("application/vnd.apple.mpegurl")) {
+            videoElement.src = url;
+          }
+
+          videoPlayer.style.display = "flex";
+          videoElement.play();
+        }
+
+        document.querySelectorAll(".video-box").forEach((box) => {
+          box.addEventListener("click", function () {
+            const url = this.getAttribute("data-url");
+            if (url) {
+              playChannel(url);
+            } else {
+              alert("Channel not available!");
+            }
+          });
+        });
+
+        document.getElementById("close-btn").addEventListener("click", function () {
+          videoElement.pause();
+          videoElement.src = "";
+          videoPlayer.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
